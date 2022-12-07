@@ -1,0 +1,75 @@
+<div class="col-6 mx-auto">
+<div class="m-4">
+<h3>Edit Subject</h3>
+</div>
+<form *ngIf="subject">
+  <div class= "m-3 mb-3">
+    <label class="form-label">Subject name</label>
+    <input
+      class="form-control"
+      type="text" required minlength="3"
+      [(ngModel)]="subject.name"
+      name="name"
+      #name="ngModel"
+    />
+    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+      <div *ngIf="name.errors?.['required']">Name is required.</div>
+      <div *ngIf="name.errors?.['minlength']">
+        Name must be at least 3 characters long.
+      </div>
+    </div>
+  </div>
+  <div class="m-3 mb-3">
+    <label class="form-label">Subject description</label>
+    <input class="form-control" type="text" [(ngModel)]="subject.description" name="description" #description="ngModel"/>
+  </div>
+  <div class="m-3 mb-3">
+    <label class="form-label">Subject No of ESP</label>
+    <input class="form-control" type="number" required min="3" max="8"
+    [(ngModel)]="subject.noOfESP"
+    name="noOfESP" #esp="ngModel">
+    <div *ngIf="esp.invalid && (esp.dirty || esp.touched)" class="alert alert-danger">
+      <div *ngIf="esp.errors?.['required']">Number is required.</div>
+      <div *ngIf="esp.errors?.['min']">Number must be between 3 and 8</div>
+      <div *ngIf="esp.errors?.['max']">Number must be between 3 and 8</div>
+    </div>
+  </div>
+
+  <div class="m-3 mb-3">
+    <label class="form-label">Year of Study</label>
+    <input
+      class="form-control"
+      type="number" required min="1" max="5"
+      [(ngModel)]="subject.yearOfStudy"
+      name="yearOfStudy" #yearOf="ngModel"/>
+      <div *ngIf="yearOf.invalid && (yearOf.dirty || yearOf.touched)" class="alert alert-danger">
+        <div *ngIf="yearOf.errors?.['required']">Year of study is required.</div>
+        <div *ngIf="yearOf.errors?.['min']">Year must be between 1 and 5</div>
+        <div *ngIf="yearOf.errors?.['max']">Year must be between 1 and 5</div>
+      </div>
+  </div>
+  <div class="m-3 mb-3">
+    <label class="form-label">Semester</label>
+    <select class="form-select" name="semester" [(ngModel)]="subject.semester" #semester="ngModel">
+      <option>Winter</option>
+      <option>Summer</option>
+    </select>
+  </div>
+  <div class="m-3 mb-3">
+  <label class="form-label">Professor</label>
+  <select class="form-select" type="text" required [(ngModel)]="subject!.professor" name="professor" #professor="ngModel" [compareWith]="compareFn">
+    <option *ngFor="let professor of professors" [ngValue]="professor">
+      {{ professor.firstName + ' ' + professor.lastName }}
+    </option>
+    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+    <div *ngIf="name.errors?.['required']">Professor is required.</div>
+  </div>
+  </select>
+</div>
+<div class="m-3 mb-3">
+    <button type="button" class="btn btn-outline-primary" (click)="updateSubject()">Save</button>
+    <button type="button" class="btn btn-outline-danger" [routerLink]="['/subject']">Cancel</button>
+
+  </div>
+</form>
+</div>

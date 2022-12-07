@@ -1,0 +1,30 @@
+<div class="m-3">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Firstname</th>
+        <th scope="col">Lastname</th>
+        <th scope="col">Email</th>
+        <th scope="col">City</th>
+        <th scope="col">Index</th>
+        <th scope="col">Year of Study</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let student of students; let i = index">
+          <td>{{ i + 1}}</td>
+          <td>{{ student.firstName}}</td>
+          <td>{{ student.lastName }}</td>
+          <td>{{ student.email }}</td>
+          <td>{{ student.city.name }}</td>
+          <td>{{ student.indexNumber + '/' + student.indexYear }}</td>
+          <td>{{ student.yearOfStudy }}</td>
+          <td>
+            <button class="btn btn-outline-success" [routerLink]="['/passedexams/passedexam-form', student.studentId, id]">Enter grade</button>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+  </div>

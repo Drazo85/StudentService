@@ -1,0 +1,11 @@
+<div class="m-3 mb-3" *ngIf="examTerm" class="m-5">
+  <h3> {{examTerm.name}}</h3>
+  <h4>
+    Start Date: {{ examTerm.startDate | date: 'longDate' }}
+  </h4>
+  <h4>
+  End date: {{ examTerm.endDate | date: 'longDate' }}
+  </h4>
+  <h4>Active: {{ examTerm.isActive }}</h4>
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,52 @@
+<div class="m-3">
+<div>
+  <button type="button" class="btn btn-primary" (click)="onAddProfessor()">Add professor</button>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Firstname</th>
+      <th scope="col">Lastname</th>
+      <th scope="col">Email</th>
+      <th scope="col">City</th>
+      <th scope="col">Title</th>
+      <th scope="col">Phone number</th>
+      <th scope="col">Reelection date</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let professor of professors; let i = index">
+        <td>{{ i + 1}}</td>
+        <td>{{ professor.firstName}}</td>
+        <td>{{ professor.lastName }}</td>
+        <td>{{ professor.email }}</td>
+        <td>{{ professor.city.name }}</td>
+        <td>{{ professor.title.title}}</td>
+        <td>{{ professor.phoneNumber }}</td>
+        <td>{{ professor.reelectionDate | date: 'longDate' }}</td>
+        <td>
+          <button class="btn btn-outline-success" [routerLink]="['/professors/professor-form', professor.id]">Edit</button>
+          <!-- <button class="btn btn-outline-dark" [routerLink]="['/professors/professor-details', professor.id]">Exams</button> -->
+          <button class="btn btn-outline-danger" (click)="onDeleteProfessor(professor)">Delete</button>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<div class="d-flex justify-content-center align-items-start">
+  <select class="pagination"
+    (change)="onPageSizeChange()"
+    [(ngModel)]="pageInfo.pageSize" >
+    <option *ngFor="let size of availablePageSizes" [ngValue]="size">{{size}}</option>
+  </select>
+  <ngb-pagination
+        [pageSize]="pageInfo.pageSize"
+        [collectionSize]="pageInfo.totalItems"
+        [(page)]="pageInfo.pageNo"
+        (pageChange)="onPageChange($event)"
+        [boundaryLinks]="true"
+        aria-label="Default pagination">
+  </ngb-pagination>
+</div>

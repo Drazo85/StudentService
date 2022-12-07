@@ -1,0 +1,14 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{header}}</h4>
+  <button type="button" class="btn btn-danger btn-sm " (click)="modal.dismiss('Close')"  >
+    <span>&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p [innerHTML]="message"></p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-primary" (click)="onConfirm()">Delete</button>
+  <button type="button" class="btn btn-outline-danger" (click)="onCancel()" >Cancel</button>
+
+</div>

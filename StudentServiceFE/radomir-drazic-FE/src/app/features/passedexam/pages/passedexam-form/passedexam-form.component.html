@@ -1,0 +1,31 @@
+<div class="col-6 mx-auto">
+<div class="m-3 mb-3">
+<h4>{{ exam.subject.name }}</h4>
+<h4>{{ student.firstName + ' ' + student.lastName }}</h4>
+</div>
+<div class="m-3 mb-3">
+  <label class="form-label">Exam</label>
+  <select class="form-select" type="text" [(ngModel)]="passedExam!.exam" name="exam">
+    <option  [ngValue]="exam">
+      {{ exam.subject.name }}
+    </option>
+  </select>
+</div>
+<div class="m-3 mb-3">
+  <label class="form-label">Student</label>
+  <select class="form-select" type="text" [(ngModel)]="passedExam!.student" name="student">
+    <option  [ngValue]="student">
+      {{ student.firstName + ' ' + student.lastName}}
+    </option>
+  </select>
+</div>
+<div class="m-3 mb-3">
+  <label class="form-label">Grade </label>
+  <input class="form-control" type="number" value="6" min="6" max="10" [(ngModel)]="passedExam.grade" name="grade"/>
+</div>
+
+<div class="m-3 mb-3">
+  <button class="btn btn-outline-primary" (click)="onAddPassedExam()">Save</button>
+  <button class="btn btn-outline-danger" [routerLink]="['/students']" routerLinkActive="router-link-active" >Cancel</button>
+</div>
+</div>

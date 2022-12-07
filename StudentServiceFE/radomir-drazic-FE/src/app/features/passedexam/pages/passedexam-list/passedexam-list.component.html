@@ -1,0 +1,26 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Student</th>
+      <th scope="col">Date</th>
+      <th scope="col">Grade</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let exam of passedExams; let i = index">
+        <td>{{ i + 1}}</td>
+        <td>{{ exam.exam!.subject.name }}</td>
+        <td>{{ exam.student!.firstName + ' ' + exam.student!.lastName }}</td>
+        <td>{{ exam.exam!.date | date: 'longDate' }} </td>
+        <td>{{ exam.grade }}</td>
+        <td>
+          <button class="btn btn-outline-success" [routerLink]="['/passedexams/passedexam-form', exam.passedExamId]">EDIT</button>
+          <button class="btn btn-outline-success">DETAILS</button>
+          <button class="btn btn-outline-success">DELETE</button>
+        </td>
+      </tr>
+  </tbody>
+</table>

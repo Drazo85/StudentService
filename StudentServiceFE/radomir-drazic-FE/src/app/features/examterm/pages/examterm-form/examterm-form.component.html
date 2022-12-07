@@ -1,0 +1,41 @@
+<form *ngIf="examTerm" class="col-6 mx-auto">
+  <div class="m-3 mb-3">
+    <label class="form-label">Name </label>
+    <input
+        class="form-control"
+        type="text" required minlength="3"
+        [(ngModel)]="examTerm.name"
+        name="name"
+        #name="ngModel"
+      />
+      <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+        <div *ngIf="name.errors?.['required']">Name is required.</div>
+        <div *ngIf="name.errors?.['minlength']">Name must be at least 3 characters long.
+        </div>
+      </div>
+  </div>
+  <div class="m-3 mb-3">
+    <label class="form-label">Start date </label>
+    <input class="form-control" type="date" required
+    [(ngModel)]="examTerm!.startDate" name="startDate" #sdate="ngModel"/>
+    <div *ngIf="sdate.invalid && (sdate.dirty || sdate.touched)" class="alert alert-danger">
+      <div *ngIf="sdate.errors?.['required']">Start date is required.</div>
+    </div>
+  </div>
+  <div class="m-3 mb-3">
+    <label class="form-label">End date </label>
+    <input class="form-control" type="date" required
+    [(ngModel)]="examTerm!.endDate" name="endDate" #edate="ngModel"/>
+    <div *ngIf="edate.invalid && (edate.dirty || sdate.touched)" class="alert alert-danger">
+      <div *ngIf="edate.errors?.['required']">End date is required.</div>
+    </div>
+  </div>
+  <div class="m-3 mb-3">
+    <label class="form-label">Active </label>
+    <input type="checkbox" [(ngModel)]="examTerm.isActive" name="isActive"/>
+  </div>
+  <div class="m-3">
+    <button class="btn btn-outline-primary"  (click)="updateExamTerm()">Save</button>
+    <button  class="btn btn-outline-danger" [routerLink]="['/examterms']">Cancel</button>
+  </div>
+</form>

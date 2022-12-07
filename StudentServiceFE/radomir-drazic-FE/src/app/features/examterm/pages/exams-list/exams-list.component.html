@@ -1,0 +1,35 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Exam term</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Date</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let exam of exams | paginate: {itemsPerPage: noPerPage, currentPage: p}; let i = index">
+        <td>{{ i + 1}}</td>
+        <td>{{ exam.examTerm.name }}</td>
+        <td>{{ exam.subject.name }}</td>
+        <td>{{ exam.date | date: 'mediumDate' }}</td>
+        <td>
+          <button class="btn btn-outline-success" [routerLink]="['/exams/exam-form', exam.id]">Change the date</button>
+          <button class="btn btn-outline-danger" (click)="onDeleteExam(exam)">Delete</button>
+        </td>
+      </tr>
+  </tbody>
+</table>
+<div>
+  <button class="btn btn-primary" (click)="onAddExam()">Add exam</button>
+</div>
+<div class="d-flex justify-content-center">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  <select [(ngModel)] = "noPerPage">
+    <option value="3">3</option>
+    <option value="5">5</option>
+    <option value="10">10</option>
+  </select>
+</div>
+

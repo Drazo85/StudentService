@@ -1,0 +1,23 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a ngbNavItem *ngIf="userLoginData.isUserLogged" class="navbar-brand" routerLink="/home">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div ngbNav #nav="ngbNav" class="navbar-nav">
+        <a ngbNavItem *ngIf="userLoginData.isUserLogged" class="nav-link" routerLink="/home">Home</a>
+        <a ngbNavItem *ngIf="userLoginData.isUserLogged" class="nav-link" routerLink="/professors">Professors</a>
+        <a ngbNavItem *ngIf="userLoginData.isUserLogged" class="nav-link" routerLink="/students">Students</a>
+        <a ngbNavItem *ngIf="userLoginData.isUserLogged" class="nav-link" routerLink="/subjects">Subjects</a>
+        <a ngbNavItem *ngIf="userLoginData.isUserLogged" class="nav-link" routerLink="/examterms">Exams Terms</a>
+        <a ngbNavItem *ngIf="userLoginData.isUserLogged" class="nav-link" routerLink="/exams">Active Exams</a>
+
+      </div>
+    </div>
+  </div>
+  <div>
+        <button *ngIf="userLoginData.isUserLogged" ngbDropDownItem (click)="logout()"  type="button" class="btn btn-light">Logout</button>
+        </div>
+</nav>

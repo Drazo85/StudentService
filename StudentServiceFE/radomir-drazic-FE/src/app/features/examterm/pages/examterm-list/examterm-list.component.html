@@ -1,0 +1,47 @@
+
+<div class="m-3">
+<div>
+  <button type="button" class="btn btn-primary" (click)="onAddExamTerm()">Add exam term</button>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Start Date</th>
+      <th scope="col">End Date</th>
+      <th scope="col">Active</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let examTerm of examTerms; let i = index">
+        <td>{{ i + 1}}</td>
+        <td>{{ examTerm.name }}</td>
+        <td>{{ examTerm.startDate | date: 'longDate' }}</td>
+        <td>{{ examTerm.endDate | date: 'longDate' }}</td>
+        <td>{{ examTerm.isActive === true ? 'Active' : 'Not Active'}}</td>
+        <td>
+          <button class="btn btn-outline-dark" [routerLink]="['/examterms/examterm-details', examTerm.examTermId]">Exams</button>
+          <button class="btn btn-outline-success" [routerLink]="['/examterms/examterm-form', examTerm.examTermId]">Edit</button>
+          <button class="btn btn-outline-danger" (click)="onDeleteExamTerm(examTerm)">Delete</button>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<div class="d-flex justify-content-center align-items-start">
+  <select class="pagination"
+    (change)="onPageSizeChange()"
+    [(ngModel)]="pageInfo.pageSize" >
+    <option *ngFor="let size of availablePageSizes" [ngValue]="size">{{size}}</option>
+  </select>
+  <ngb-pagination
+        [pageSize]="pageInfo.pageSize"
+        [collectionSize]="pageInfo.totalItems"
+        [(page)]="pageInfo.pageNo"
+        (pageChange)="onPageChange($event)"
+        [boundaryLinks]="true"
+        aria-label="Default pagination">
+  </ngb-pagination>
+</div>

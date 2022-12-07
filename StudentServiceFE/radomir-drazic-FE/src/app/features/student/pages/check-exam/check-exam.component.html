@@ -1,0 +1,18 @@
+<form class="col-6 mx-auto">
+  <div>
+    <input type="hidden" [(ngModel)]="student" name="student" readonly>
+  </div>
+  <div class="m-3 mb-3">
+    <label class="form-label">Exam</label>
+    <select class="form-select" type="text" [(ngModel)]="exam" name="exam">
+      <option *ngFor="let exam of exams" [ngValue]="exam" >
+        {{ exam.subject.name }}
+      </option>
+    </select>
+  </div>
+  <div class="m-3 mb-3">
+    <button  type="button" class="btn btn-outline-primary" (click)="onCheckExam()">Save</button>
+    <button  type="button" class="btn btn-outline-danger" [routerLink]="['/exams']">Cancel</button>
+
+  </div>
+</form>

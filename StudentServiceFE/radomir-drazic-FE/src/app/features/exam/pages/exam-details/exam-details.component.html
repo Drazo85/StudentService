@@ -1,0 +1,13 @@
+<div *ngIf="exam" class="m-5">
+  <h3> {{exam.subject.name}}</h3>
+  <h4>
+    {{ exam.subject.professor.firstName + ' ' + exam.subject.professor.lastName }}
+  </h4>
+
+  <router-outlet>
+    <div class="m-3">
+      <h4>Active students list</h4>
+    <button class="btn btn-outline-success" [routerLink]="['/exams/exam-details', exam.id, 'activestudents-list']">Active Students</button>
+    <!-- <button class="btn btn-outline-success" [routerLink]="['/students/student-details', exam.studentId, 'passedexams-list']">Passed Exams</button> -->
+  </div>
+  </router-outlet>

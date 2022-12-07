@@ -1,0 +1,50 @@
+<div class="m-3">
+<div>
+  <button type="button" class="btn btn-primary" (click)="onAddSubject()">Add subject</button>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">No. of Esp</th>
+      <th scope="col">Year of study</th>
+      <th scope="col">Semester</th>
+      <th scope="col">Professor</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let subject of subjects; let i = index">
+        <td>{{ i + 1}}</td>
+        <td>{{ subject.name }}</td>
+        <td>{{ subject.noOfESP }}</td>
+        <td>{{ subject.yearOfStudy }}</td>
+        <td>{{ subject.semester }}</td>
+        <td>{{ subject.professor.firstName + ' ' + subject.professor.lastName }}</td>
+        <td>
+          <button class="btn btn-outline-success" [routerLink]="['/subjects/subject-form', subject.subjectId]">Edit</button>
+          <button class="btn btn-outline-danger" (click)="onDeleteSubject(subject)">Delete</button>
+        </td>
+      </tr>
+  </tbody>
+</table>
+
+
+</div>
+<div class="d-flex justify-content-center align-items-start">
+  <select class="pagination"
+    (change)="onPageSizeChange()"
+    [(ngModel)]="pageInfo.pageSize" >
+    <option *ngFor="let size of availablePageSizes" [ngValue]="size">{{size}}</option>
+  </select>
+  <ngb-pagination
+        [pageSize]="pageInfo.pageSize"
+        [collectionSize]="pageInfo.totalItems"
+        [(page)]="pageInfo.pageNo"
+        (pageChange)="onPageChange($event)"
+        [boundaryLinks]="true"
+        aria-label="Default pagination">
+  </ngb-pagination>
+</div>
+

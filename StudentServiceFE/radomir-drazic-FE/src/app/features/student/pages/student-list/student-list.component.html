@@ -1,0 +1,62 @@
+<div class="m-3">
+<div class="m-3 mb-3">
+  <button type="button" class="btn btn-primary mx-2" (click)="onAddStudent()">Add student</button>
+  <label class="form-label mx-2" for="searchByFirstName">Search by firstname</label>
+  <input type="text" [(ngModel)]="filters.firstName" name="firstName" (input)="loadStudents()">
+  <label class="form-label mx-2" for="searchByLastName">Search by lastname</label>
+  <input type="text" [(ngModel)]="filters.lastName" name="lastName" (input)="loadStudentsByLastName()">
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Firstname</th>
+      <th scope="col">Lastname</th>
+      <th scope="col">Email</th>
+      <th scope="col">City</th>
+      <th scope="col">Index</th>
+      <th scope="col">Year of Study</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let student of students | paginate: {itemsPerPage: noPerPage, currentPage: p}; let i = index">
+        <td>{{ i + 1}}</td>
+        <td>{{ student.firstName}}</td>
+        <td>{{ student.lastName }}</td>
+        <td>{{ student.email }}</td>
+        <td>{{ student.city.name }}</td>
+        <td>{{ student.indexNumber + '/' + student.indexYear }}</td>
+        <td>{{ student.yearOfStudy }}</td>
+        <td>
+          <button class="btn btn-outline-dark" [routerLink]="['/students/student-details', student.studentId]">Exams</button>
+          <button class="btn btn-outline-success" [routerLink]="['/students/student-form', student.studentId]">Edit</button>
+          <button class="btn btn-outline-danger" (click)="onDeleteStudent(student)">Delete</button>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<div class="d-flex justify-content-center">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  <select [(ngModel)] = "noPerPage">
+    <option value="3">3</option>
+    <option value="5">5</option>
+    <option value="10">10</option>
+  </select>
+</div>
+<!-- <div class="d-flex justify-content-center align-items-start">
+  <select class="pagination"
+    (change)="onPageSizeChange()"
+    [(ngModel)]="pageInfo.pageSize" >
+    <option *ngFor="let size of availablePageSizes" [ngValue]="size">{{size}}</option>
+  </select>
+  <ngb-pagination
+        [pageSize]="pageInfo.pageSize"
+        [collectionSize]="pageInfo.totalItems"
+        [(page)]="pageInfo.pageNo"
+        (pageChange)="onPageChange($event)"
+        [boundaryLinks]="true"
+        aria-label="Default pagination">
+  </ngb-pagination>
+</div> -->

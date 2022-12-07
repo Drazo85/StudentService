@@ -1,0 +1,36 @@
+<p>add-exam works!</p>
+
+<div class="modal-header">
+  <h4 class="modal-title">Add Exam</h4>
+  <button type="button" class="btn btn-danger btn-sm" (click)="modal.dismiss('Close')"  >
+    <span>&times;</span>
+  </button>
+</div>
+
+<form #addForm="ngForm">
+  <div class="m-3 mb-3">
+    <label class="form-label">Exam term</label>
+    <select class="form-select" type="text" [(ngModel)]="exam!.examTerm" name="examTerm">
+      <option *ngFor="let examTerm of examTerms" [ngValue]="examTerm">
+        {{ examTerm.name }}
+      </option>
+    </select>
+  </div>
+  <div class="m-3 mb-3">
+    <label class="form-label">Subject</label>
+    <select class="form-select" type="text" [(ngModel)]="exam!.subject" name="subject">
+      <option *ngFor="let subject of subjects" [ngValue]="subject">
+        {{ subject.name }}
+      </option>
+    </select>
+  </div>
+  <div class="m-3 mb-3">
+    <label class="form-label">Date </label>
+    <input class="form-control" type="date" [value]="exam!.date" [(ngModel)]="exam!.date" name="date"/>
+  </div>
+
+  <div class="m-3 mb-3">
+        <button class="btn btn-outline-primary" [disabled]="addForm.invalid" (click)="onAddExam()">Save</button>
+        <button class="btn btn-outline-danger" (click)="onCancel()">Cancel</button>
+  </div>
+</form>

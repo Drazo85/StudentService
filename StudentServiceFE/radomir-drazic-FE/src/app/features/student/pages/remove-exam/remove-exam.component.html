@@ -1,0 +1,8 @@
+
+<h4>Are you sure you want to remove {{ exam.subject.name }} from active exams?</h4>
+<div>
+  <div>
+    <button type="button" class="btn btn-outline-primary" (click)="removeActiveExam()">Remove</button>
+    <button type="button" class="btn btn-outline-danger" [routerLink]="['/students']" routerLinkActive="router-link-active" >Cancel</button>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<table *ngIf="exams" class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Exam term</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Date</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let exam of exams; let i = index">
+    <!-- *ngIf="today < exam.date.toString().split('T')[0]" -->
+    <tr >
+        <td>{{ i + 1}}</td>
+        <td>{{ exam.examTerm.name }}</td>
+        <td>{{ exam.subject.name }}</td>
+        <td>{{ exam.date | date:  'mediumDate' }}</td>
+        <td>
+          <!--[routerLink]="['/passedexams/passedexam-form', studentId, exam.id]"-->
+          <!-- [routerLink]="['/students/student-details', studentId, 'remove-exam', exam.id]" -->
+          <button class="btn btn-outline-success" [routerLink]="['/passedexams/passedexam-form', id, exam.id]" >Enter grade</button>
+          <button class="btn btn-outline-success" >Remove</button>
+        </td>
+      </tr>
+  </tbody>
+</table>
